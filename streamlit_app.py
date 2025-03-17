@@ -131,7 +131,7 @@ class ArticleGenerator:
         """
         
         response = self.client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o-mini",
             messages=[{
                 "role": "system",
                 "content": system_prompt
@@ -424,6 +424,8 @@ class ArticleGenerator:
             # Prompt dla pojedynczej sekcji
             system_prompt = f"""
             Jesteś profesjonalnym copywriterem. Twoim zadaniem jest napisanie JEDNEJ SEKCJI artykułu.
+
+            Artykuł i sekcje muszą być w języku polskim. Zwróć SZCZEGÓLNĄ uwagę na poprowność językową: interpunkcję, ortografię, zasady odmiany wyrazów itp.
             
             WYMAGANIA DŁUGOŚCI - BARDZO WAŻNE:
             1. Ta sekcja MUSI mieć DOKŁADNIE {ai_target} słów - TO JEST ABSOLUTNY WYMÓG.
@@ -456,6 +458,7 @@ class ArticleGenerator:
             - Nie powtarzaj treści z poprzednich sekcji.
             - UPEWNIJ SIĘ, że sekcja ma co najmniej {ai_target - 50} słów.
             - Przed zakończeniem POLICZ SŁOWA i sprawdź, czy jest ich wystarczająco dużo.
+            - Upewnij się, że tekst jest poprawny językowo
             """
             
             # Generowanie sekcji - tylko jedna próba
